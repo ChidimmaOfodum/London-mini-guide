@@ -12,27 +12,6 @@ const stratford = require("./data/Stratford.json");
 const data = { harrow: harrow, heathrow: heathrow, stratford: stratford };
 
 //..........defining routes........................................................
-let { pharmacies, colleges, hospitals, doctors } = stratford;
-
-app.get("/pharmacies", (req, res) => {
-  res.json(pharmacies);
-});
-
-app.get("/colleges", (req, res) => {
-  res.json(colleges);
-});
-
-app.get("/hospitals", (req, res) => {
-  res.json(hospitals);
-});
-
-app.get("/doctors", (req, res) => {
-  res.json(doctors);
-});
-
-// routes to get data in all cities
-
-// :/city/:category
 
 app.get("/:city", (req, res) => {
   let city = req.params.city.toLowerCase();
@@ -46,9 +25,7 @@ app.get("/:city/:place", (req, res) => {
   if(result) {
     res.json(result)
   } else {
-    res.status(404).json({
-        message: "Not found"
-    })
+    res.status(404).send("Not found")
   }
 });
 
